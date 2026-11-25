@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fbf8f5">
+    <meta name="description" content="Portfolio de Rahoeliharimanana Mamisoa Fitahiana, étudiante en informatique et passionnée de création.">
+    <title>Fitahiana — Portfolio</title>
+    <style>
+        :root {
+            --ink: #29233a;
+            --muted: #777181;
+            --accent: #7956bd;
+            --accent-dark: #61419e;
+            --lavender: #eee8f8;
+            --paper: #fbf8f5;
+            --white: #fff;
+            --line: #e9e3ed;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Segoe UI", Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            line-height: 1.65;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        .container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(251, 248, 245, .92);
+            border-bottom: 1px solid rgba(233, 227, 237, .8);
+            backdrop-filter: blur(14px);
+        }
+        .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .brand { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; letter-spacing: -.04em; }
+        .brand span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 32px; color: #5f5969; font-size: .9rem; }
+        .nav-links a { transition: color .2s ease; }
+        .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+        .nav-cta { padding: 10px 18px; border: 1px solid #d5c9e6; border-radius: 999px; color: var(--accent-dark) !important; }
+        .menu-toggle { display: none; border: 0; background: transparent; color: var(--ink); font-size: 1.6rem; cursor: pointer; }
+
+        .hero { padding: 74px 0 96px; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 72px; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent-dark); font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { margin: 20px 0 18px; font-family: var(--serif); font-size: clamp(3rem, 6vw, 5.3rem); font-weight: 500; letter-spacing: -.065em; line-height: .99; }
+        h1 span { color: var(--accent); }
+        .hero-copy { max-width: 540px; color: var(--muted); font-size: 1.08rem; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+        .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border: 1px solid var(--accent); border-radius: 999px; font-size: .9rem; font-weight: 650; transition: transform .2s ease, background .2s ease; }
+        .button:hover { transform: translateY(-2px); }
+        .button-primary { background: var(--accent); color: var(--white); }
+        .button-primary:hover { background: var(--accent-dark); }
+        .button-plain { color: var(--accent-dark); }
+        .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 34px; color: var(--muted); font-size: .84rem; }
+        .status-dot { width: 9px; height: 9px; border-radius: 50%; background: #88a67c; box-shadow: 0 0 0 4px #e8eee4; }
+        .portrait-wrap { position: relative; width: min(100%, 430px); justify-self: end; }
+        .portrait-wrap::before { content: ""; position: absolute; inset: 30px -23px -24px 23px; border: 1px solid #d7cbe8; border-radius: 48% 48% 28px 28px; }
+        .portrait { position: relative; width: 100%; height: 540px; object-fit: cover; object-position: center 28%; border-radius: 48% 48% 24px 24px; }
+        .portrait-caption { position: absolute; right: -34px; bottom: 34px; max-width: 210px; padding: 16px 19px; border-radius: 14px; background: var(--white); box-shadow: 0 14px 40px rgba(48, 34, 68, .12); font-family: var(--serif); font-size: 1.05rem; }
+        .portrait-caption span { display: block; color: var(--muted); font-family: var(--sans); font-size: .75rem; }
+
+        .section { padding: 94px 0; }
+        .section-soft { background: #f3eff8; }
+        .section-heading { max-width: 650px; margin-bottom: 46px; }
+        .section-heading h2 { margin: 14px 0 12px; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 500; letter-spacing: -.045em; line-height: 1.1; }
+        .section-heading p { margin-bottom: 0; color: var(--muted); }
+        .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: 80px; }
+        .about-aside { padding: 30px; border-radius: 20px; background: var(--white); }
+        .about-aside strong { display: block; margin-bottom: 8px; font-family: var(--serif); font-size: 1.35rem; }
+        .about-aside p { margin: 0; color: var(--muted); font-size: .92rem; }
+        .about-text { color: var(--muted); }
+        .about-text p { margin-bottom: 18px; }
+        .about-text p:last-child { margin-bottom: 0; }
+
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .interest-card { min-height: 220px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); }
+        .card-number { color: var(--accent); font-family: var(--serif); font-size: 1rem; }
+        .interest-card h3 { margin: 38px 0 8px; font-family: var(--serif); font-size: 1.5rem; font-weight: 500; }
+        .interest-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+        .skills-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+        .skill { padding: 9px 15px; border: 1px solid #dcd2eb; border-radius: 999px; color: #5f4b7f; background: #faf8fd; font-size: .84rem; }
+
+        .journey { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .journey-card { padding: 30px; border-radius: 18px; background: var(--white); }
+        .journey-year { color: var(--accent); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+        .journey-card h3 { margin: 13px 0 8px; font-family: var(--serif); font-size: 1.5rem; font-weight: 500; }
+        .journey-card p { margin: 0; color: var(--muted); }
+
+        .gallery { display: grid; grid-template-columns: 1.1fr .9fr; grid-template-rows: 220px 220px; gap: 16px; }
+        .gallery figure { position: relative; overflow: hidden; margin: 0; border-radius: 16px; background: var(--lavender); }
+        .gallery figure:first-child { grid-row: 1 / 3; }
+        .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+        .gallery figure:first-child img { object-position: 45% center; }
+        .gallery figure:hover img { transform: scale(1.035); }
+        .gallery figcaption { position: absolute; right: 12px; bottom: 12px; left: 12px; padding: 10px 14px; border-radius: 10px; background: rgba(255,255,255,.9); color: var(--ink); font-size: .82rem; }
+
+        .contact { padding: 68px; border-radius: 24px; background: var(--ink); color: var(--white); text-align: center; }
+        .contact .eyebrow { color: #cbb8eb; }
+        .contact h2 { max-width: 620px; margin: 16px auto; font-family: var(--serif); font-size: clamp(2.3rem, 4vw, 3.5rem); font-weight: 500; letter-spacing: -.04em; line-height: 1.1; }
+        .contact p { max-width: 530px; margin: 0 auto 26px; color: #d3cedb; }
+        .contact .button { border-color: #d8c6f4; color: var(--white); }
+        .contact .button:hover { background: rgba(255,255,255,.1); }
+
+        footer { padding: 28px 0; color: var(--muted); font-size: .8rem; }
+        .footer-wrap { display: flex; justify-content: space-between; gap: 16px; }
+        .footer-credit { color: #67537f; }
+
+        @media (max-width: 760px) {
+            .container { width: min(100% - 36px, 560px); }
+            .nav-wrap { min-height: 68px; }
+            .menu-toggle { display: block; }
+            .nav-links { position: absolute; top: 68px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 10px 24px 20px; border-bottom: 1px solid var(--line); background: var(--paper); }
+            .nav-links.is-open { display: flex; }
+            .nav-links a { padding: 12px 0; }
+            .nav-cta { align-self: flex-start; padding: 9px 16px !important; }
+            .hero { padding: 52px 0 72px; }
+            .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 42px; }
+            .portrait-wrap { width: min(86%, 390px); justify-self: center; }
+            .portrait { height: 440px; }
+            .portrait-caption { right: -18px; }
+            .section { padding: 70px 0; }
+            .about-grid { gap: 24px; }
+            .cards { grid-template-columns: 1fr; }
+            .interest-card { min-height: auto; }
+            .interest-card h3 { margin-top: 24px; }
+            .journey { grid-template-columns: 1fr; }
+            .gallery { grid-template-rows: 250px 170px; gap: 10px; }
+            .contact { padding: 46px 24px; }
+            .footer-wrap { flex-direction: column; text-align: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="container nav-wrap" aria-label="Navigation principale">
+            <a class="brand" href="#accueil" aria-label="Fitahiana, accueil">F<span>.</span></a>
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+            <div class="nav-links" id="nav-links">
+                <a href="#apropos">À propos</a>
+                <a href="#passions">Passions</a>
+                <a href="#parcours">Parcours</a>
+                <a href="#galerie">Galerie</a>
+                <a class="nav-cta" href="#contact">Me contacter <span aria-hidden="true">↗</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="accueil">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow">Étudiante · Créative · Curieuse</span>
+                    <h1>Bonjour,<br>je suis <span>Fitahiana.</span></h1>
+                    <p class="hero-copy">Étudiante en informatique, j’aime apprendre, créer et donner vie à mes idées — entre technologie, musique et expression artistique.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#apropos">Découvrir mon univers <span aria-hidden="true">↓</span></a>
+                        <a class="button button-plain" href="#parcours">Mon parcours <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="hero-note"><span class="status-dot" aria-hidden="true"></span> En formation chez ONG ARARATA FLM Tanjombato</div>
+                </div>
+                <div class="portrait-wrap">
+                    <img class="portrait" src="sary%202.jpg" alt="Portrait de Fitahiana en extérieur">
+                    <div class="portrait-caption">Créer avec le cœur.<span>Apprendre chaque jour.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft" id="apropos">
+            <div class="container about-grid">
+                <div class="section-heading">
+                    <span class="eyebrow">Qui suis-je ?</span>
+                    <h2>Un esprit curieux, plein d’envies.</h2>
+                    <div class="about-aside">
+                        <strong>RAHOELIHARIMANANA<br>Mamisoa Fitahiana</strong>
+                        <p>17 ans · Étudiante en informatique</p>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>Je m’appelle Fitahiana. Après l’obtention de mon baccalauréat série L en 2025, j’ai choisi de poursuivre ma passion pour l’informatique et le numérique.</p>
+                    <p>J’aime découvrir de nouveaux outils, progresser à mon rythme et exprimer ma créativité. La musique, la danse et la création de contenu occupent aussi une place importante dans mon quotidien.</p>
+                    <p>Mon objectif est de développer mes compétences et de réaliser des projets qui me ressemblent.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="passions">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Ce qui m’inspire</span>
+                    <h2>Mes passions & mes compétences.</h2>
+                    <p>Des centres d’intérêt qui nourrissent ma créativité et des bases numériques que je continue de développer.</p>
+                </div>
+                <div class="cards">
+                    <article class="interest-card">
+                        <span class="card-number">01 / Expression</span>
+                        <h3>Musique</h3>
+                        <p>Une source d’inspiration et une façon de partager des émotions.</p>
+                    </article>
+                    <article class="interest-card">
+                        <span class="card-number">02 / Mouvement</span>
+                        <h3>Danse</h3>
+                        <p>J’aime l’énergie, le rythme et la liberté de m’exprimer en mouvement.</p>
+                    </article>
+                    <article class="interest-card">
+                        <span class="card-number">03 / Création</span>
+                        <h3>Contenu numérique</h3>
+                        <p>Imaginer des contenus et apprendre à raconter des histoires en images et en vidéo.</p>
+                    </article>
+                </div>
+                <div class="skills-row" aria-label="Compétences numériques">
+                    <span class="skill">Microsoft Word</span>
+                    <span class="skill">Microsoft Excel</span>
+                    <span class="skill">Dactylographie</span>
+                    <span class="skill">Montage vidéo</span>
+                    <span class="skill">Informatique</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft" id="parcours">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Mon chemin</span>
+                    <h2>Apprendre, puis aller plus loin.</h2>
+                </div>
+                <div class="journey">
+                    <article class="journey-card">
+                        <span class="journey-year">2025</span>
+                        <h3>Baccalauréat — série L</h3>
+                        <p>Obtention du baccalauréat littéraire.</p>
+                    </article>
+                    <article class="journey-card">
+                        <span class="journey-year">Aujourd’hui</span>
+                        <h3>Formation en informatique</h3>
+                        <p>Étudiante chez ONG ARARATA FLM Tanjombato, où je développe mes connaissances et mes compétences numériques.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="galerie">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Quelques portraits</span>
+                    <h2>Un aperçu de mon univers.</h2>
+                </div>
+                <div class="gallery">
+                    <figure>
+                        <img src="SARY%201.jpg" alt="Portrait de Fitahiana, collage de deux selfies" loading="lazy">
+                        <figcaption>Un sourire et beaucoup d’idées.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="sary%203.jpg" alt="Portrait de Fitahiana en chemise rose" loading="lazy">
+                        <figcaption>La créativité au quotidien.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="sary%202.jpg" alt="Portrait de Fitahiana en extérieur" loading="lazy">
+                        <figcaption>Curieuse de découvrir la suite.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft" id="contact">
+            <div class="container">
+                <div class="contact">
+                    <span class="eyebrow">Restons en contact</span>
+                    <h2>Une idée, un projet ou simplement envie d’échanger ?</h2>
+                    <p>Je serais ravie de faire connaissance et de partager mes prochaines créations.</p>
+                    <a class="button" href="mailto:hsrakotoarivola@gmail.com">Me contacter <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-wrap">
+            <span>© 2026 Fitahiana · Tout droit reservé, strictement autorisé par Mlle Fitahiana...</span>
+            <span class="footer-credit">Développé par Herilova Stephan</span>
+        </div>
+    </footer>
+    <script>
+        const menuButton = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+            menuButton.setAttribute("aria-expanded", String(!isOpen));
+            menuButton.setAttribute("aria-label", isOpen ? "Ouvrir le menu" : "Fermer le menu");
+            navLinks.classList.toggle("is-open", !isOpen);
+        });
+
+        navLinks.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+                navLinks.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Ouvrir le menu");
+            }
+        });
+    </script>
+</body>
+</html>
